@@ -4,13 +4,14 @@ EXPOSE 8080
 
 WORKDIR /app/zhenxun
 
-RUN apt update \
-    && apt install -y git \
+RUN apt-get update \
+    && apt-get install -y git \
     && git clone https://github.com/HibiKier/zhenxun_bot.git --depth=1 \
     && cd zhenxun_bot \
     && pip install poetry \
     && poetry install \
-    && poetry shell \
-    && poetry run playwright install --with-deps chromium
+    && poetry shell
+
+RUN poetry run playwright install --with-deps chromium
 
 CMD ["poetry", "run", "python", "bot.py"]
