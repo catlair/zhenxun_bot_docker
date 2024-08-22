@@ -5,6 +5,7 @@ EXPOSE 8080
 WORKDIR /app/zhenxun
 
 RUN apt update \
+    && apt install -y git \
     && git clone https://github.com/HibiKier/zhenxun_bot.git --depth=1 \
     && cd zhenxun_bot \
     && pip install poetry \
